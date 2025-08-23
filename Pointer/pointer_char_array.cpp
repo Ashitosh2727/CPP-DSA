@@ -17,4 +17,6 @@ int main()
     char *c = &temp;
 
     cout<< "->" << c << endl;
+
+    
 }

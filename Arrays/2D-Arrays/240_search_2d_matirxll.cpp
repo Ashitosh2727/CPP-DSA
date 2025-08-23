@@ -5,28 +5,24 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
     int i = matrix.size();
     int j = matrix[0].size();
 
-    int start = 0;
-    int end =  i * j  - 1;
-    
-    int mid = start + (end - start) / 2;
+    int rowIndex =  0;
+    int colIndex = j - 1;
 
-    while(start <= end)
+    while(rowIndex < i && colIndex >= 0)
     {
-        int element = matrix[mid/j][mid%j];
-
+        int element = matrix[rowIndex][colIndex];
         if(element == target)
         {
             return 1;
         }
         else if(element < target)
         {
-            start = mid + 1;
+            rowIndex++;
         }
         else
         {
-            end = mid - 1;
+            colIndex--;
         }
-        mid = start + (end - start) / 2;
     }
     return 0;
 }
