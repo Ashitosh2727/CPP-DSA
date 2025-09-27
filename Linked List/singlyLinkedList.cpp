@@ -112,7 +112,7 @@ void deleteNode(int position, Node* &head)
             curr = curr -> next;
             cnt++;
         }
-
+        //if deleting last node
         prev -> next = curr -> next;
         curr -> next = NULL;
         delete curr;
