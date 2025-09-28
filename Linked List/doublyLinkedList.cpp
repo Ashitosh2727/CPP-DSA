@@ -58,7 +58,6 @@ void insertAtHead(Node* &head,Node* &tail, int data)
     if(head == NULL)
     {
         Node* temp = new Node(data);
-        temp -> next = head;
         head = temp;
         tail = temp;
     }
@@ -76,7 +75,6 @@ void insertAtTail(Node* &head,Node* &tail, int data)
     if(tail == NULL)
     {
         Node* temp = new Node(data);
-        temp -> next = head;
         head = temp;
         tail = temp;
     }
