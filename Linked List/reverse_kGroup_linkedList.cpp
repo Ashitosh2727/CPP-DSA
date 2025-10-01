@@ -16,10 +16,6 @@ class Node{
 Node* kreverse(Node* head, int k)
 {
     //base case
-    if(head == NULL)
-    {
-        return NULL;
-    }
     Node* prev = NULL;
     Node* curr = head;
     Node* forward = NULL;
