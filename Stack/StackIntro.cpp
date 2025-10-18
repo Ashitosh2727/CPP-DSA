@@ -1,6 +1,87 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// Stack using Linked List
+class Node{
+    public:
+    int data;
+    Node* next;
+
+    Node(int data)
+    {
+        this -> data = data;
+        this -> next = NULL;
+    }
+
+
+};
+
+class Stack{
+    public:
+    Node* top;
+
+    //Constructor
+    Stack()
+    {
+        top = NULL;
+    }
+
+    //push opreation
+    void push(int data)
+    {
+        Node* newNode = new Node(data);
+        if(!newNode)
+        {
+            cout<< "Stack OverFlow" << endl;
+            return;
+        }
+        newNode -> next = top;
+        top = newNode;
+    }
+
+    //pop operation
+    void pop()
+    {
+        if(top == NULL)
+        {
+            cout<< "Stack UnderFlow"<< endl;
+            return;
+        }
+
+        Node* temp = top;
+        top = top -> next;
+        delete temp;
+    }
+
+    int peak()
+    {
+        if(top != NULL)
+        {
+            return top -> data;
+        }
+        else
+        {
+            cout<< "Stack is Empty"<< endl;
+            return -1;
+        }
+    }
+
+    bool isEmpty()
+    {
+        if(top == NULL)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+};
+
+
+//Stack using Array
 class Stack{
 
     //properties
