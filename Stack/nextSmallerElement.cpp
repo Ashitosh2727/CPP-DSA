@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> nextSmaallerElement(vector<int>& arr, int n)
+vector<int> nextSmallerElement(vector<int>& arr, int n)
 {
     stack<int> s;
     s.push(-1);
