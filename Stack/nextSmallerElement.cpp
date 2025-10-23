@@ -25,7 +25,7 @@ int main()
     vector<int> arr = {4, 5, 2, 10, 8};
     int n = arr.size();
 
-    vector<int> ans = nextSmaallerElement(arr, n);
+    vector<int> ans = nextSmallerElement(arr, n);
 
     for(int i = 0; i<ans.size(); i++)
     {
