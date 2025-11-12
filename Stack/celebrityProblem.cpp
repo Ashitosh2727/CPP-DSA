@@ -70,7 +70,7 @@ int celebrity(vector<vector <int>>& M, int n)
             oneCount++;
         }
     }
-
+    // all ones except self
     if(oneCount == n-1) 
     {
 
