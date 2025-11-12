@@ -1,75 +1,98 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-// Function to check if person 'a' knows person 'b'
-bool knows(vector<vector<int>> &m, int a, int b) {
-    return m[a][b] == 1;
+bool knows(int a, int b, vector<vector<int>> &M, int n)
+{
+    if(M[a] [b] == 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
-
-// Function to find the celebrity
-int celebrityProblem(vector<vector<int>> &m, int n) {
+int celebrity(vector<vector <int>>& M, int n)
+{
     stack<int> s;
-
-    // Step 1: Push all people into the stack
-    for (int i = 0; i < n; i++) {
+    // step 1 : push all elements in stack
+    for(int i = 0; i<n; i++)
+    {
         s.push(i);
     }
 
-    // Step 2: Get two elements and compare them
-    while (s.size() > 1) {
+    // step 2 : get 2 elements and compare them
+
+    while(s.size() > 1)
+    {
         int a = s.top();
         s.pop();
+
         int b = s.top();
         s.pop();
 
-        if (knows(m, a, b)) {
-            // a knows b → a can't be a celebrity
+        if(knows(a, b, M, n))
+        {
             s.push(b);
-        } else {
-            // a doesn't know b → b can't be a celebrity
+        }
+        else
+        {
             s.push(a);
         }
     }
-
-    // Step 3: Potential celebrity
     int candidate = s.top();
+    // step 3 : single element in a stack is a potential celebrity
+    // so verify it
 
-    // Step 4: Verify candidate
-    // Row check — candidate should not know anyone
-    for (int i = 0; i < n; i++) {
-        if (m[candidate][i] != 0) {
-            return -1; // candidate knows someone → not celebrity
+    bool rowCheck = false;
+    int zeroCount = 0;
+    for(int i = 0; i<n; i++)
+    {
+        if(M[candidate] [i] == 0)
+        {
+            zeroCount++;
         }
     }
 
-    // Column check — everyone should know candidate
-    for (int i = 0; i < n; i++) {
-        if (i != candidate && m[i][candidate] != 1) {
-            return -1; // someone doesn't know candidate → not celebrity
+    // all zeros
+    if(zeroCount == n)
+    {
+        rowCheck = true;
+    }
+
+    //column check
+    bool colCheck = false;
+    int oneCount = 0;
+    for(int i = 0; i<n; i++)
+    {
+        if(M[i] [candidate] == 1)
+        {
+            oneCount++;
         }
     }
 
-    return candidate;
+    if(oneCount == n-1) 
+    {
+
+        colCheck = true;
+    }
+    if(rowCheck == true && colCheck == true)
+    {
+        return candidate;
+    }
+    else
+    {
+        return -1;
+    }
+
 }
 
-int main() {
-    int n;
-    cin >> n;
-    vector<vector<int>> m(n, vector<int>(n, 0));
-
-    // Input matrix
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> m[i][j];
-        }
-    }
-
-    int celeb = celebrityProblem(m, n);
-    if (celeb == -1) {
-        cout << "No celebrity found" << endl;
-    } else {
-        cout << "Celebrity is at index: " << celeb << endl;
-    }
-
+int main()
+{
+    int n = 3;
+    vector<vector<int>> M = {{0, 1, 0},
+                             {0, 0, 0},
+                             {0, 1, 0}};    
+    cout<< celebrity(M, n);
     return 0;
 }
